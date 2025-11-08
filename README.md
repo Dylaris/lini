@@ -1,31 +1,46 @@
-# lini
+# Lini
 
-## Brief
+A lightweight Lua library for parsing and generating INI configuration files.
 
-Read/Write ini file in lua.
+## Features
 
-## Usage
+- **Load** INI files into Lua tables.
+- **Generate** INI files from Lua tables.
 
-- read
+## Quick Start
 
-```lua
-    local lini = require("lini")
-    local sections = lini.load("config.ini")
-    local profile = sections.profile
-    print("[profile] name: " .. profile.name)
-```
+### Installation
 
-- write
+Copy `lini.lua` into your project and require it:
 
 ```lua
-    local lini = require("lini")
-    local sections = {}
-    local server = {}
-    server.host = "127.0.0.1"
-    server.port = 5050
-    sections.server = server
-
-    local file = assert(io.open("config.ini", "w"))
-    lini.dump(sections, file)
-    io.close(file)
+local lini = require("lini")
 ```
+
+### Usage
+
+**Load an INI file:**
+
+```lua
+local sections = lini.load("config.ini")
+print(sections.profile.name)
+```
+
+**Generate an INI file:**
+
+```lua
+local sections = {
+    server = {
+        host = "127.0.0.1",
+        port = "5050"
+    }
+}
+
+local file = io.open("config.ini", "w")
+lini.dump(sections, file)
+file:close()
+```
+
+## License
+
+MIT © Dylaris

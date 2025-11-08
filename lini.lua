@@ -1,3 +1,7 @@
+-- Supported Syntax
+-- > Sections: [section_name]
+-- > Key-value pairs: key = value
+
 local lini = {}
 
 local function parse_section(line)
